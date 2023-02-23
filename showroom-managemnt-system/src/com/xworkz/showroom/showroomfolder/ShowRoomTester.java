@@ -2,13 +2,15 @@ package com.xworkz.showroom.showroomfolder;
 
 import java.util.Scanner;   // built in packages 
 
+import com.xworkz.showroom.Excepetion.ManagerNotFoundException;
+
 public class ShowRoomTester //FQCN - fully Qualified class name = package + classname - Qualified Name
 
-// package are increse the folder
+// package are increase the folder
 
 { 
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ManagerNotFoundException {
 		System.out.println("main method started");
 		
 		
@@ -48,21 +50,35 @@ public class ShowRoomTester //FQCN - fully Qualified class name = package + clas
 		//Manager manag1= new Manager(2, "Vithal","Electroniccity","B.E", 7022716266l,"Male");
 		//Manager manag2= new Manager(3,"Abhi","Laxmipura","B.E", 7406050101l , "");
 		
-		room.saveManager(manag);
+		try {
+			room.saveManager(manag);
+			room.getManagerByContactNo(7406050101l);
+			room.getManagerByManagerAddress("Rajajinagar");
+			room.getManagerByManagerGender("male");
+		} catch (ManagerNotFoundException e) {
+			
+			e.printStackTrace();
+		}
+		
+		finally {
+			if(scanner != null) {
+				scanner.close();
+			}
+		}
 		//room.saveManager(manag1);
 		//room.saveManager(manag2);
 		}
-		room.getAllManager();
-		room.getManagerByManagerQualification("B.com");
-		room.getManagerByManagerAddress("Vijayanagar");
-		room.getManagerByContactNo(9876542222l);
-		room.getManagerByManagerName("Pavan");
-		//room.getManagerByManagerGender("Female");  not getting female details doubt
-		room.getManagerByManagerGender("male");
-		//room.updateManagerContactNoById(8899775522l, 3);
-		room.updateManagerNamebyId("sonu", 3);
-		
-		scanner.close();
+//		room.getAllManager();
+//		room.getManagerByManagerQualification("B.com");
+//		room.getManagerByManagerAddress("Vijayanagar");
+//		room.getManagerByContactNo(9876542222l);
+//		room.getManagerByManagerName("Pavan");
+//		//room.getManagerByManagerGender("Female");  not getting female details doubt
+//		room.getManagerByManagerGender("male");
+//		//room.updateManagerContactNoById(8899775522l, 3);
+//		room.updateManagerNamebyId("sonu", 3);
+////		
+//		scanner.close();
 	}
 
 }

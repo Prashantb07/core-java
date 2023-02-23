@@ -1,16 +1,18 @@
 package com.xworkz.showroom.showroomfolder;
 
+import com.xworkz.showroom.Excepetion.ManagerNotFoundException;
+
 public class ShowRoom {
 	//Manager manager[] = new Manager[3];
 	Manager manager[];
 	int index ;
 	
-	public ShowRoom(int size) {
+	public ShowRoom(int size)  {
 		
 		System.out.println("object us created");
 		manager = new Manager[size];
 	}
-	public boolean saveManager(Manager manager) {
+	public boolean saveManager(Manager manager)  {
 	boolean isAdded = false;
 	System.out.println("inside save method");
 	
@@ -19,6 +21,7 @@ public class ShowRoom {
 		this.manager[index++] = manager;
 		isAdded = true;
 	}
+	
 	return isAdded;
 	}
 	
@@ -42,7 +45,7 @@ public Manager getManagerByManagerQualification(String qualification) {
 		return null;
 	}
 	
-	public Manager getManagerByManagerAddress(String address) {
+	public Manager getManagerByManagerAddress(String address) throws ManagerNotFoundException {
 		for(int i1=0; i1<manager.length; i1++) {
 				System.out.println("getManagerByManagerAddress Method Started");
 			if(manager[i1].address==address) {
@@ -50,6 +53,9 @@ public Manager getManagerByManagerQualification(String qualification) {
 				System.out.println(manager[i1].managerId+" "+manager[i1].managerName +" "+ manager[i1].address+ " "+manager[i1].qualification+ " "+manager[i1].contactNo+ " "+manager[i1].gender);
 			return manager[i1];
 				
+			}
+			else {
+				throw new ManagerNotFoundException("no manager found in given qulification");
 			}
 		}
 		return null;
